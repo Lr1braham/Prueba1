@@ -25,3 +25,9 @@ def registro(request):
             return redirect("registro")  # Puedes redirigir al login en vez de registro
 
     return render(request, "usuarios/registro.html")
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'usuarios/registro.html')  # crea esta plantilla
+
