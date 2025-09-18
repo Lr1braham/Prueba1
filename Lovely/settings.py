@@ -88,7 +88,7 @@ DATABASES = {
         'PASSWORD': 'fkrAVoOgJXKgCz7dsPqE55fZ1sxVvy30',  # contraseña
         'HOST': 'dpg-d34oqcvfte5s73aan2bg-a.ohio-postgres.render.com',  # solo el host
         'PORT': '5432',  # puerto
-        'default': dj_database_url.Lovely(default=os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     }
 }
 
