@@ -29,10 +29,7 @@ def registro(request):
 from django.shortcuts import render
 
 def home(request):
-    return render(request, 'usuarios/registro.html')  # crea esta plantilla
-
-def home(request):
     return render(request, "home.html")
 
-from django.shortcuts import render
-
+def registro(request):
+    return render(request, "registro.html")

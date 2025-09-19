@@ -2,11 +2,58 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Bienvenida</title>
+    <title>Bienvenido a Lovely</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #e75480;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #e75480;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #d1426c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido a Lovely</h1>
-    <p>Esta es la página principal de la aplicación.</p>
-    <a href="{% url 'registro' %}">Ir al registro</a>
+    <div class="container">
+        <h1>Bienvenido a Lovely 💕</h1>
+        <p>Tu aplicación para encontrar conexiones únicas.</p>
+        <a href="{% url 'registro' %}" class="button">Ir al registro</a>
+    </div>
 </body>
 </html>

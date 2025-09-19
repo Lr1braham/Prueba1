@@ -18,13 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('registro/', include('usuarios.urls')),   # tu app de registro
-    path('', RedirectView.as_view(url='registro/')),  # 👈 redirige la raíz a /registro/
-    path("", include("usuarios.urls")),
+    path("admin/", admin.site.urls),
+    path("", include("usuarios.urls")),  # 👈 Todas las urls de la app usuarios
 ]
 
-from django.views.generic import RedirectView
-
-
-    
