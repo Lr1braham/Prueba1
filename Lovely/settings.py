@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'Lovely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lovely_997e',  # nombre de tu base de datos
-        'USER': 'lovely_997e_user',  # usuario
-        'PASSWORD': 'fkrAVoOgJXKgCz7dsPqE55fZ1sxVvy30',  # contraseña
-        'HOST': 'dpg-d34oqcvfte5s73aan2bg-a.ohio-postgres.render.com',  # solo el host
+        'NAME': 'lovely_jtte',  # nombre de tu base de datos
+        'USER': 'lovely_jtte_user',  # usuario
+        'PASSWORD': 'PQ5VlbAuARVmIPpdRorwfdxE81PLvaWb',  # contraseña
+        'HOST': 'dpg-d36ss8je5dus738qvim0-a.ohio-postgres.render.com',  # solo el host
         'PORT': '5432',  # puerto
         'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     }
