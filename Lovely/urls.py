@@ -16,20 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from usuarios import views  # tu app de usuarios
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
-
-urlpatterns = [
-    path("", include("usuarios.urls")),
-]
-
-from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('registro/', include('usuarios.urls')),   # tu app de registro
     path('', RedirectView.as_view(url='registro/')),  # 👈 redirige la raíz a /registro/
+    path("", include("usuarios.urls")),
 ]
+
+from django.views.generic import RedirectView
+
+
+    
