@@ -28,7 +28,6 @@ def registro(request):
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import RegistroForm  # ejemplo de formulario
 
 def registro(request):
     return render(request, "usuarios/registro.html")
@@ -36,12 +35,3 @@ def registro(request):
 def home(request):
     return render(request, "usuarios/home.html")   # 👈 importante el prefijo usuarios/
 
-def registro(request):
-    if request.method == "POST":
-        form = RegistroForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, "usuarios/success.html")  # 👈 muestra tu página
-    else:
-        form = RegistroForm()
-    return render(request, "usuarios/registro.html", {"form": form})
