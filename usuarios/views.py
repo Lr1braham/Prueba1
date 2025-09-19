@@ -33,3 +33,6 @@ def home(request):
 
 def home(request):
     return render(request, "home.html")
+
+from django.shortcuts import render
+

@@ -26,8 +26,6 @@ urlpatterns = [
     path("", include("usuarios.urls")),
 ]
 
-
-
 from django.views.generic import RedirectView
 
 urlpatterns = [
