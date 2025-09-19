@@ -29,7 +29,7 @@ def registro(request):
 from django.shortcuts import render
 
 def registro(request):
-    return render(request, "../usuarios/registro.html")
+    return render(request, "usuarios/registro.html")
 
 def home(request):
-    return render(request, "../usuarios/home.html")   # 👈 importante el prefijo usuarios/
+    return render(request, "usuarios/home.html")   # 👈 importante el prefijo usuarios/
