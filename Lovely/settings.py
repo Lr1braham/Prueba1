@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.contrib.messages import constants as messages
 
 # Load environment variables
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -33,9 +34,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 # Application definition
-
+MESSAGE_TAGS = {
+    messages.DEBUG: "debug",
+    messages.INFO: "info",
+    messages.SUCCESS: "success",
+    messages.WARNING: "warning",
+    messages.ERROR: "error",
+}
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
