@@ -98,6 +98,8 @@ DATABASES = {
         'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
         'OPTIONS': {
             'sslmode': 'require', } # Requiere SSL 
+    }
+}
 
 #ALLOWED_HOSTS = ['Lovely.onrender.com']
 
