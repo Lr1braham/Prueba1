@@ -99,6 +99,19 @@ DATABASES = {
         },
     }
 }
+import os
+import dj_database_url
+
+# Si existe DATABASE_URL (Render u otra producción), se sobreescribe
+
+DATABASES_URL = {
+    'default': dj_database_url.config(
+        default='postgres://lovely_jtte_user:PQ5VlbAuARVmIPpdRorwfdxE81PLvaWb@dpg-d36ss8je5dus738qvim0-a.ohio-postgres.render.com:5432/lovely_jtte',
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
 
 
 #ALLOWED_HOSTS = ['Lovely.onrender.com']
