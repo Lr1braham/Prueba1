@@ -34,3 +34,6 @@ def registro(request):
 
 def home(request):
     return render(request, "usuarios/home.html")   # 👈 importante el prefijo usuarios/
+
+#aaaaaa
+
