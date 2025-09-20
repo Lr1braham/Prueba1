@@ -1,9 +1,10 @@
+# en myapp/urls.py
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.home, name="home"),  # / → página de bienvenida
-    path("registro/", views.registro, name="registro"),  # /registro/ → página de registro
+    path('contact/', views.contact_view, name='contact'),
+    path('success/', views.success_view, name='success'),  # opcional
 ]
 
 
