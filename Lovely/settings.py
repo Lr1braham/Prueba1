@@ -90,16 +90,17 @@ WSGI_APPLICATION = 'Lovely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lovely_jtte',  # nombre de tu base de datos
-        'USER': 'lovely_jtte_user',  # usuario
-        'PASSWORD': 'PQ5VlbAuARVmIPpdRorwfdxE81PLvaWb',  # contraseña
-        'HOST': 'dpg-d36ss8je5dus738qvim0-a.ohio-postgres.render.com',  # solo el host
-        'PORT': '5432',  # puerto
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+        'NAME': 'lovely_jtte',
+        'USER': 'lovely_jtte_user',
+        'PASSWORD': 'PQ5VlbAuARVmIPpdRorwfdxE81PLvaWb',
+        'HOST': 'dpg-d36ss8je5dus738qvim0-a.ohio-postgres.render.com',
+        'PORT': '5432',
         'OPTIONS': {
-            'sslmode': 'require', } # Requiere SSL 
+            'sslmode': 'require',
+        },
     }
 }
+
 
 #ALLOWED_HOSTS = ['Lovely.onrender.com']
 
