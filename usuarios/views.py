@@ -11,12 +11,14 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()  # guarda automáticamente en PostgreSQL
-            return redirect('usuarios/contact.html')  # redirige a una página de éxito
+            return redirect('success')  # redirige a una página de éxito
     else:
         form = ContactForm()
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'usuarios/contact.html', {'form': form})
 
 def success_view(request):
     return render(request, 'usuarios/success.html')
+
+#aaaaaaaaa
 
 
