@@ -96,8 +96,8 @@ DATABASES = {
         'HOST': 'dpg-d36ss8je5dus738qvim0-a.ohio-postgres.render.com',  # solo el host
         'PORT': '5432',  # puerto
         'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-    }
-}
+        'OPTIONS': {
+            'sslmode': 'require', } # Requiere SSL 
 
 #ALLOWED_HOSTS = ['Lovely.onrender.com']
 
