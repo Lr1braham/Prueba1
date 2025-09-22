@@ -145,7 +145,7 @@
 }
 
 .auth-image {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/usuarios/images/background.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' https://pymstatic.com/4909/conversions/tipos-de-pareja-wide_webp.webp ');
     flex: 1;
     background-size: cover;
     background-position: center;
