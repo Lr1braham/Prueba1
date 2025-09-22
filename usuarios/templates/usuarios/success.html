@@ -1,17 +1,71 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrarse - Lovely</title>
+    <link rel="stylesheet" href="{% static 'usuarios/css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'usuarios/css/style.css' %}">
 </head>
 <body>
+    <div class="auth-container">
+        <div class="auth-form">
+            <div class="auth-header">
+                <img src="{% static 'usuarios/images/Logo.png' %}" alt="Lovely" class="auth-logo">
+                <h1>Registrarse</h1>
+                <p>Crea tu cuenta para encontrar tu pareja ideal</p>
+            </div>
+            
+            <form method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
 
-    <h2>✅ Registro exitoso</h2>
+                <div class="form-group">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
 
-    <p>El usuario ha sido guardado en la base de datos.</p>
+                <button type="submit" class="btn btn-primary w-100">Registrar</button>
 
-    <a href="{% url 'home' %}">Volver al inicio</a>
+                <div class="auth-footer">
+                    <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+                </div>
+            </form>
 
+            <div class="social-login">
+                <p>O regístrate con:</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-icon apple"><i class="fab fa-apple"></i></a>
+                </div>
+            </div>
+
+            <h2>✅ Registro exitoso</h2>
+
+            <p>El usuario ha sido guardado en la base de datos.</p>
+
+            <a href="{% url 'home' %}">Volver al inicio</a>
+            
+        </div>
+        
+        <div class="auth-image">
+            <div class="image-overlay">
+                <img src="https://pymstatic.com/4909/conversions/tipos-de-pareja-wide_webp.webp" 
+                alt="" width="400">
+
+                <h2>Encuentra a tu pareja ideal</h2>
+                <p>Conéctate con personas que comparten tus intereses y valores</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'usuarios/js/auth.js' %}"></script>
 </body>
 </html>
+
