@@ -7,3 +7,9 @@ urlpatterns = [
     path('success/', views.success_view, name='success'),  # Éxito
     path("login/", views.login_view, name="login"),
 ]
+
+# myapp/urls.py
+from django.urls import path
+from . import views
+
+
