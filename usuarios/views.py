@@ -36,9 +36,6 @@ def login_view(request):
         try:
             user = Contact.objects.get(email=email, password=password)
             # Guardamos la sesión
-            request.session["user_id"] = user.id
-            request.session["user_name"] = user.name
-            messages.success(request, f"Bienvenido {user.name}")
             return redirect("dashboard")  # redirige a otra página después de login
         except Contact.DoesNotExist:
             messages.error(request, "Correo o contraseña incorrectos")
@@ -49,10 +46,14 @@ def login_view(request):
 
 def dashboard_view(request):
     user_id = request.session.get("user_id")
-    user_name = request.session.get("user_name")
 
     if not user_id:
         return redirect("login")  # si no hay sesión vuelve al login
 
     return render(request, "dashboard.html", {"user_name": user_name})
+
+# Vista para manejar el logout
+def logout_view(request):
+    request.session.flush()  # borra la sesión
+    return redirect("login")
 
