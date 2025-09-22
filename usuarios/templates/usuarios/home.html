@@ -1,59 +1,147 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Bienvenido a Lovely</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: 400px;
-        }
-
-        h1 {
-            color: #e75480;
-            margin-bottom: 20px;
-        }
-
-        p {
-            color: #444;
-            margin-bottom: 30px;
-        }
-
-        a.button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #e75480;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        a.button:hover {
-            background-color: #d1426c;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentra tu Pareja - Lovely</title>
+    <link rel="stylesheet" href="{% static 'usuarios/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'usuarios/css/auth.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido a Lovely 💕</h1>
-        <p>Tu aplicación para encontrar conexiones únicas.</p>
-        <a href="{% url 'contact' %}" class="button">Ir al registro</a>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{% static 'usuarios/images/logo.png' %}" alt="Lovely">
+                <div class="colorLovely">
+                    <h1>Lovely</h1>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}" class="active">Inicio</a></li>
+                <li><a href="#how-it-works">Cómo funciona</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="{% url 'login' %}" class="btn-login">Iniciar Sesión</a></li>
+                <li><a href="{% url 'contact' %}" class="btn-register">Contacto</a></li>
+            </ul>
+            <div class="burger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Encuentra tu pareja ideal</h2>
+                <p>Conecta con personas que comparten tus intereses y valores</p>
+                <a href="{% url 'contact' %}" class="btn-primary">Crear cuenta gratis</a>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <h2>¿Cómo funciona Lovely?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>Crea tu perfil</h3>
+                    <p>Completa tu perfil con tus intereses y lo que buscas en una pareja.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Encuentra matches</h3>
+                    <p>Nuestro algoritmo te mostrará personas compatibles contigo.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Conecta</h3>
+                    <p>Envía mensajes y conoce a tus matches en persona.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>Historias de éxito</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <img src="{% static 'usuarios/images/juntos1.jpg' %}" alt="Usuario">
+                    <p>"Conocí a mi pareja en Lovely después de 3 meses. ¡Ahora llevamos 2 años juntos!"</p>
+                    <span>- María y Carlos</span>
+                </div>
+                <div class="testimonial-card">
+                    <img src="{% static 'usuarios/images/maria.jpg' %}" alt="Usuario">
+                    <p>"Me encanta cómo la app conecta personas con intereses similares. ¡Totalmente recomendada!"</p>
+                    <span>- Laura</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="mi-estilo">
+            <h3>✨ ¡Atención, solteros y solteras! ✨</h3>
+            <p>
+                Si buscas el amor, nuevas amistades o simplemente una aventura emocionante, Lovely es la app que no puede faltar en tu vida...
+            </p>
+        </div>
+        <div class="footer-bottom"></div>
+        <div class="footer-section">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lovely</h3>
+                    <p>Encuentra tu pareja ideal con nuestro sistema de matching avanzado.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Inicio</a></li>
+                        <li><a href="#how-it-works">Cómo funciona</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                        <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lovely. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'usuarios/js/main.js' %}"></script>
+
+    <!-- Botón para abrir el modal -->
+    <button class="open-modal-btn" onclick="openModal()">Personalizar mis preferencias</button>
+
+    <!-- Modal -->
+    <div class="modal-background" id="preferencesModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">×</button>
+            <h2>Personaliza tus preferencias</h2>
+            <p>Selecciona cómo te gustaría que personalicemos tu experiencia en la página.</p>
+            <button onclick="alert('Preferencias guardadas')">Guardar preferencias</button>
+        </div>
     </div>
+
+    <script>
+        function openModal() {
+          document.getElementById('preferencesModal').style.display = 'block';
+        }
+        function closeModal() {
+          document.getElementById('preferencesModal').style.display = 'none';
+        }
+    </script>
+
+    <form id="miFormulario">
+      <input type="text" id="nombre">
+      <button type="submit">Enviar</button>
+    </form>
 </body>
 </html>
