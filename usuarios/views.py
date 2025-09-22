@@ -21,4 +21,7 @@ def success_view(request):
 
 #aaaaaaaaa
 
+def login_view(request):
+    return render(request, "usuarios/login.html")  # si creas login.html
+
 
