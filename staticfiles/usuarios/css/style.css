@@ -337,7 +337,7 @@ footer {
 
 /* Fondo oscurecido */
     .modal-background {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/usuarios/images/background.jpg');
+      
       display: none; /* Oculto por defecto */
       position: fixed;
       top: 0; left: 0;
@@ -348,6 +348,7 @@ footer {
 
     /* Contenedor del modal */
     .modal-content {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/usuarios/images/background.jpg');
       background-color: #fff;
       margin: 10% auto;
       padding: 20px;
