@@ -21,6 +21,9 @@ def contact_view(request):
 def success_view(request):
     return render(request, 'usuarios/success.html')
 
+def login_view(request):
+    return render(request, "usuarios/login.html")
+
 # Vista para manejar el login
 
 def login_view(request):
