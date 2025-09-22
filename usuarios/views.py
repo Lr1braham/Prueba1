@@ -43,7 +43,7 @@ def login_view(request):
         except Contact.DoesNotExist:
             messages.error(request, "Correo o contraseña incorrectos")
 
-    return render(request, "login.html")
+    return render(request, "usuarios/login.html")
 
 # Vista para el dashboard (página protegida)
 
