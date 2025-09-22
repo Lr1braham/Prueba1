@@ -18,16 +18,16 @@
                 <p>Crea tu cuenta para encontrar tu pareja ideal</p>
             </div>
             
-            <form method="post" action="{% url 'contact' %}">
+            <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-                
+
                 <h2>✅ Registro exitoso</h2>
 
                 <p>El usuario ha sido guardado en la base de datos.</p>
 
                 <a href="{% url 'home' %}">Volver al inicio</a>
 
-                <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                <button type="submit" class="btn btn-primary w-100">Iniciar Sesion</button>
 
                 <div class="auth-footer">
                     <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>

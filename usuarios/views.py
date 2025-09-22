@@ -24,6 +24,8 @@ def success_view(request):
 def login_view(request):
     return render(request, "usuarios/login.html")
 
+from django.shortcuts import render
+
 # Vista para manejar el login
 
 def login_view(request):
@@ -42,4 +44,15 @@ def login_view(request):
             messages.error(request, "Correo o contraseña incorrectos")
 
     return render(request, "login.html")
+
+# Vista para el dashboard (página protegida)
+
+def dashboard_view(request):
+    user_id = request.session.get("user_id")
+    user_name = request.session.get("user_name")
+
+    if not user_id:
+        return redirect("login")  # si no hay sesión vuelve al login
+
+    return render(request, "dashboard.html", {"user_name": user_name})
 
