@@ -71,7 +71,7 @@ ROOT_URLCONF = 'Lovely.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # tu carpeta de templates
+        'DIRS': [BASE_DIR / 'templates'], # tu carpeta de templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
