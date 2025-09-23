@@ -4,9 +4,7 @@ from .forms import ContactForm
 from .models import Contact
 from django.contrib import messages # para mensajes flash
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.hashers import check_password
-from .forms import SignUpForm
-from django.contrib.auth import login as auth_login
+
 
 def home(request):
     return render(request, "usuarios/home.html")
