@@ -73,18 +73,3 @@ def login_view(request):
             messages.error(request, "Correo o contraseña incorrectos")
     return render(request, "Login.html")
 
-####
-
-# usuarios/views.py
-
-def signup_view(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()                 # guarda y hashea password
-            auth_login(request, user)          # opcional: loguear inmediatamente
-            messages.success(request, "Registro exitoso")
-            return redirect("dashboard")
-    else:
-        form = SignUpForm()
-    return render(request, "contact.html", {"form": form})
