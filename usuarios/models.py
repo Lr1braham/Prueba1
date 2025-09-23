@@ -2,7 +2,7 @@ from django.db import models
 
 class Contact(models.Model):
     
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     #name = models.CharField(max_length=100)
     #message = models.TextField()
     #phone = models.CharField(max_length=20, blank=True, null=True)   # ✅ nuevo campo
