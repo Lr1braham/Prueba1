@@ -75,6 +75,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -160,3 +161,14 @@ STATICFILES_DIRS = [BASE_DIR / "static"]  # si tienes una carpeta "static" en el
 STATIC_ROOT = BASE_DIR / "staticfiles"    # para producción (collectstatic)
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+#aaaaaa
+
+# Redirige después de login exitoso
+LOGIN_REDIRECT_URL = '/dashboard/'
+
+# Redirige después de logout
+LOGOUT_REDIRECT_URL = '/'
+
+# URL para redirigir cuando se requiere login
+LOGIN_URL = '/accounts/login/'

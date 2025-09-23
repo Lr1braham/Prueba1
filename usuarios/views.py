@@ -71,3 +71,6 @@ def login_view(request):
             messages.error(request, "Correo o contraseña incorrectos")
     return render(request, "usuarios/login.html")
 
+##aaaa
+
+
