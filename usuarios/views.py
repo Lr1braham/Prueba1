@@ -41,7 +41,7 @@ def contact_view(request):
             return redirect("login")
     else:
         form = ContactForm()
-    return render(request, "Contact.html", {"form": form})
+    return render(request, "usuarios/contact.html", {"form": form})
 
 
 # Vista para el dashboard (página protegida)
@@ -51,7 +51,7 @@ def dashboard_view(request):
     if not user_id:
         return redirect("login")
     user = Contact.objects.get(id=user_id)
-    return render(request, "Dashboard.html", {"user": user})
+    return render(request, "usuarios/dashboard.html", {"user": user})
 
 def logout_view(request):
     request.session.flush()
@@ -69,5 +69,5 @@ def login_view(request):
             return redirect("dashboard")
         else:
             messages.error(request, "Correo o contraseña incorrectos")
-    return render(request, "Login.html")
+    return render(request, "usuarios/login.html")
 
