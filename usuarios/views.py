@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm
 from .models import Contact
 from django.contrib import messages # para mensajes flash
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password
+from .forms import SignUpForm
+from django.contrib.auth import login as auth_login
 
 def home(request):
     return render(request, "usuarios/home.html")
@@ -27,33 +31,60 @@ def login_view(request):
 from django.shortcuts import render
 
 # Vista para manejar el login
-
-def login_view(request):
+def contact_view(request):
     if request.method == "POST":
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save(commit=False)
+            raw = form.cleaned_data.get("password", "").strip()
+            contact.password = make_password(raw)   # <-- hash aquí
+            contact.save()
+            messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
+            return redirect("login")
+    else:
+        form = ContactForm()
+    return render(request, "Contact.html", {"form": form})
 
-        try:
-            user = Contact.objects.get(email=email, password=password)
-            # Guardamos la sesión
-            return redirect("dashboard")  # redirige a otra página después de login
-        except Contact.DoesNotExist:
-            messages.error(request, "Correo o contraseña incorrectos")
-
-    return render(request, "usuarios/login.html")
 
 # Vista para el dashboard (página protegida)
 
 def dashboard_view(request):
     user_id = request.session.get("user_id")
-
     if not user_id:
-        return redirect("login")  # si no hay sesión vuelve al login
+        return redirect("login")
+    user = Contact.objects.get(id=user_id)
+    return render(request, "Dashboard.html", {"user": user})
 
-    return render(request, "dashboard.html", {"user_name": user_name})
-
-# Vista para manejar el logout
 def logout_view(request):
-    request.session.flush()  # borra la sesión
+    request.session.flush()
     return redirect("login")
 
+
+# Vista para manejar el login
+def login_view(request):
+    if request.method == "POST":
+        email = request.POST.get("email","").strip()
+        password = request.POST.get("password","").strip()
+        user = Contact.objects.filter(email__iexact=email, password=password).first()
+        if user:
+            request.session["user_id"] = user.id
+            return redirect("dashboard")
+        else:
+            messages.error(request, "Correo o contraseña incorrectos")
+    return render(request, "Login.html")
+
+####
+
+# usuarios/views.py
+
+def signup_view(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()                 # guarda y hashea password
+            auth_login(request, user)          # opcional: loguear inmediatamente
+            messages.success(request, "Registro exitoso")
+            return redirect("dashboard")
+    else:
+        form = SignUpForm()
+    return render(request, "contact.html", {"form": form})
