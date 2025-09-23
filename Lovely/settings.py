@@ -164,6 +164,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 #aaaaaa
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # Redirige después de login exitoso
 LOGIN_REDIRECT_URL = '/dashboard/'
 
@@ -172,3 +174,14 @@ LOGOUT_REDIRECT_URL = '/'
 
 # URL para redirigir cuando se requiere login
 LOGIN_URL = '/accounts/login/'
+
+#Security settings for production
+if not DEBUG:
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_SECONDS = 3600
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
