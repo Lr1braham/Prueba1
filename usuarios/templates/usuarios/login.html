@@ -14,7 +14,7 @@
         <div class="auth-form">
             <div class="auth-header">
                 <img src="{% static 'usuarios/images/Logo.png' %}" alt="Lovely" class="auth-logo">
-                <h1>Login</h1>
+                <h1>Iniciar Sesión</h1>
                 <p>Ingresa los datos de tu cuenta para encontrar tu pareja ideal</p>
             </div>
                 {% if messages %}
@@ -27,8 +27,6 @@
                     
            <form method="POST" class="login-form">
                 {% csrf_token %}
-
-                <h2>Iniciar Sesión</h2>
 
                 <div class="form-group">
                     <label for="username">Nombre de usuario</label>
