@@ -1,29 +1,11 @@
-<a href="{% url 'contact' %}" class="button">Ir al registro</a>
-
-<!-- en templates/contact.html -->
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enviar</button>
-</form>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Panel</title>
 </head>
 <body>
-
-    <h2>✅ Registro exitoso</h2>
-
-    <p>El usuario ha sido guardado en la base de datos.</p>
-
-    <a href="{% url 'home' %}">Volver al inicio</a>
-
+    <h1>Bienvenido {{ user_name }}</h1>
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
 </body>
 </html>
-
-{% csrf_token %}
-contact_view
