@@ -76,7 +76,7 @@ def login_view(request):
                 messages.error(request, "Email o contraseña incorrectos")
     else:
         form = LoginForm()
-    return render(request, "login.html", {"form": form})
+    return render(request, "usuarios/login.html", {"form": form})
 
 
 
