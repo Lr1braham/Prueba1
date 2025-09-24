@@ -3,9 +3,11 @@ from django.shortcuts import render, redirect
 #from .forms import ContactForm
 from .models import Contact
 from django.contrib import messages # para mensajes flash
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login, logout
+#from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 
 
 def home(request):
@@ -79,15 +81,12 @@ def login_view(request):
         form = LoginForm()
     return render(request, "usuarios/login.html", {"form": form})
 
-from django.contrib.auth.models import User
-from django.contrib.auth import login
-#from django.shortcuts import render, redirect
-#from django.contrib import messages
+# Vista para manejar el registro
 
 def register_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
         if User.objects.filter(username=username).exists():
             messages.error(request, "Ese usuario ya existe.")
@@ -95,8 +94,7 @@ def register_view(request):
             user = User.objects.create_user(username=username, password=password)
             user.save()
             messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
-            return redirect("dashboard")  # asegúrate de tener esta url configurada
-
-    return render(request, "usuarios/contact.html")  # 👈 aquí va tu template real
+            return redirect("dashboard")  # 👈 redirige al login (no al dashboard)
+    return render(request, "usuarios/contact.html")
 
 
