@@ -173,7 +173,7 @@ body {
 }
 
 .form-mensaje button.btn-primary {
-  background: #7c3aed;
+  background: #cf2f45;
   color: white;
   border: none;
   padding: 10px 18px;
@@ -183,7 +183,7 @@ body {
 }
 
 .form-mensaje button.btn-primary:hover {
-  background: #5b21b6;
+  background: #b31d36;
 }
 
 .contador-amigos {
