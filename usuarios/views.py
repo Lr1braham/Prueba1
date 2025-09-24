@@ -40,7 +40,7 @@ def contact_view(request):
             contact.password = make_password(raw)   # <-- hash aquí
             contact.save()
             messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
-            return redirect("usarios/dashboard.html")# modifique login po dasboard
+            return redirect("dashboard")# modifique login po dasboard
     else:
         form = ContactForm()
     return render(request, "usuarios/contact.html", {"form": form})
