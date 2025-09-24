@@ -4,7 +4,6 @@ from .views import login_view
 
 urlpatterns = [
     path('', views.home, name='home'),           # Página de inicio
-    #path('contact/', views.contact_view, name='contact'),  # Formulario
     path("contact/", views.register_view, name="contact"),  # ✅ ahora usa register_view
     path('success/', views.success_view, name='success'),  # Éxito
     path("dashboard/", views.dashboard_view, name="dashboard"),# página protegida
