@@ -1,6 +1,6 @@
 # en myapp/views.py
 from django.shortcuts import render, redirect
-from .forms import ContactForm
+#from .forms import ContactForm
 from .models import Contact
 from django.contrib import messages # para mensajes flash
 from django.contrib.auth.hashers import make_password
@@ -11,7 +11,7 @@ from .forms import LoginForm
 def home(request):
     return render(request, "usuarios/home.html")
 
-
+"""
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -21,7 +21,7 @@ def contact_view(request):
     else:
         form = ContactForm()
     return render(request, 'usuarios/contact.html', {'form': form})
-
+"""
 def success_view(request):
     return render(request, 'usuarios/success.html')
 
@@ -31,6 +31,7 @@ def login_view(request):
 from django.shortcuts import render
 
 # Vista para manejar el login
+"""
 def contact_view(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
@@ -44,7 +45,7 @@ def contact_view(request):
     else:
         form = ContactForm()
     return render(request, "usuarios/contact.html", {"form": form})
-
+"""
 
 # Vista para el dashboard (página protegida)
 
@@ -78,5 +79,24 @@ def login_view(request):
         form = LoginForm()
     return render(request, "usuarios/login.html", {"form": form})
 
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+#from django.shortcuts import render, redirect
+#from django.contrib import messages
+
+def register_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Ese usuario ya existe.")
+        else:
+            user = User.objects.create_user(username=username, password=password)
+            user.save()
+            messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
+            return redirect("dashboard")  # asegúrate de tener esta url configurada
+
+    return render(request, "contact.html")  # 👈 aquí va tu template real
 
 
