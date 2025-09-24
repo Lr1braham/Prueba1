@@ -2,6 +2,7 @@
 # myapp/forms.py
 from django import forms
 from .models import Contact
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class ContactForm(forms.ModelForm):
@@ -32,3 +33,7 @@ class ContactForm(forms.ModelForm):
             'username': 'Nombre de usuario',
         }
 ##aaaaaaaaaaaaa
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label="Nombre de usuario")  # o email si configuras auth
+    password = forms.CharField(widget=forms.PasswordInput)
