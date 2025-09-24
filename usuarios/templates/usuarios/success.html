@@ -21,14 +21,17 @@
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
 
-                <h2>✅ Registro exitoso</h2>
+                    <h2 style="text-align: center;">✅ Registro exitoso ✅</h2>
                 
-                <img src="https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/2705.png" 
-                alt="" width="400">
+                    <img src="https://elcrisol.com.co/wp-content/uploads/2017/04/chulo.png" 
+                        alt="chulo"
+                        style="display: block; margin-left: auto; margin-right: auto; width: 50px;">
 
-                <p>El usuario ha sido guardado en la base de datos.</p>
+                <p style="text-align: center;">El usuario ha sido guardado en la base de datos.</p>
 
-                <a href="{% url 'home' %}">Volver al inicio</a>
+                <div style="text-align: center;">
+                    <a href="{% url 'home' %}">Volver al inicio</a>
+                </div>
 
                 <div class="auth-footer">
                     <p>¿Ya tienes una cuenta?</p><br>
