@@ -1,6 +1,6 @@
 # en myapp/views.py
 from django.shortcuts import render, redirect
-#from .forms import ContactForm
+from .forms import ContactForm
 from .models import Contact
 from django.contrib import messages # para mensajes flash
 #from django.contrib.auth.hashers import make_password
@@ -85,16 +85,21 @@ def login_view(request):
 
 def register_view(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Ese usuario ya existe.")
-        else:
-            user = User.objects.create_user(username=username, password=password)
-            user.save()
-            messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
-            return redirect("dashboard")  # 👈 redirige al login (no al dashboard)
-    return render(request, "usuarios/contact.html")
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Ese usuario ya existe.")
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save()
+                messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
+                return redirect("dashboard")  # 👈 redirige al login
+    else:
+        form = ContactForm()
 
+    return render(request, "usuarios/contact.html", {"form": form})
 
