@@ -7,8 +7,9 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 
-
+# Vista para la página de inicio
 def home(request):
     return render(request, "usuarios/home.html")
 
@@ -18,16 +19,18 @@ def success_view(request):
 def login_view(request):
     return render(request, "usuarios/login.html")
 
-from django.shortcuts import render
-
 # Vista para el dashboard (página protegida)
-
+'''
 def dashboard_view(request):
     user_id = request.session.get("user_id")
     if not user_id:
         return redirect("login")
     user = Contact.objects.get(id=user_id)
     return render(request, "usuarios/dashboard.html", {"user": user})
+'''
+@login_required
+def dashboard_view(request):
+    return render(request, "usuarios/dashboard.html", {"user": request.user})
 
 def logout_view(request):
     request.session.flush()
@@ -73,6 +76,9 @@ def register_view(request):
         form = ContactForm()
 
     return render(request, "usuarios/contact.html", {"form": form})
+
+
+
 
 
 
