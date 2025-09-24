@@ -97,6 +97,6 @@ def register_view(request):
             messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
             return redirect("dashboard")  # asegúrate de tener esta url configurada
 
-    return render(request, "contact.html")  # 👈 aquí va tu template real
+    return render(request, "usuarios/contact.html")  # 👈 aquí va tu template real
 
 
