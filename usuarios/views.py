@@ -18,19 +18,15 @@ def success_view(request):
 
 def login_view(request):
     return render(request, "usuarios/login.html")
-
-# Vista para el dashboard (página protegida)
-'''
-def dashboard_view(request):
-    user_id = request.session.get("user_id")
-    if not user_id:
-        return redirect("login")
-    user = Contact.objects.get(id=user_id)
-    return render(request, "usuarios/dashboard.html", {"user": user})
 '''
 @login_required
 def dashboard_view(request):
     return render(request, "usuarios/dashboard.html", {"user": request.user})
+'''
+@login_required
+def dashboard_view(request):
+    usuarios = User.objects.all()  # trae todos los usuarios
+    return render(request, "usuarios/dashboard.html", {"usuarios": usuarios})
 
 def logout_view(request):
     request.session.flush()
@@ -76,6 +72,33 @@ def register_view(request):
         form = ContactForm()
 
     return render(request, "usuarios/contact.html", {"form": form})
+
+# Vista para el dashboard con mensajes privados
+
+from .forms import MensajeForm
+from .models import Mensaje
+
+@login_required
+def dashboard_view(request):
+    # Formulario de nuevo mensaje
+    if request.method == "POST":
+        form = MensajeForm(request.POST)
+        if form.is_valid():
+            mensaje = form.save(commit=False)
+            mensaje.remitente = request.user
+            mensaje.save()
+            return redirect("dashboard")
+    else:
+        form = MensajeForm()
+
+    # Mensajes recibidos por el usuario logueado
+    mensajes_recibidos = Mensaje.objects.filter(destinatario=request.user).order_by("-fecha_envio")
+
+    return render(request, "usuarios/dashboard.html", {
+        "form": form,
+        "mensajes": mensajes_recibidos,
+    })
+
 
 
 

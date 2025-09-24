@@ -8,7 +8,6 @@
 
   <link rel="stylesheet" href="{% static 'usuarios/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'usuarios/css/dashboard.css' %}">
-
 </head>
 <body>
 
@@ -19,7 +18,7 @@
     </div>
     <ul class="sidebar-links">
       <li><a href="{% url 'dashboard' %}" class="active">Inicio</a></li>
-      <li><a href="#">Mensajes</a></li>
+      <li><a href="#mensajes">Mensajes</a></li>
       <li><a href="#">Amigos</a></li>
       <li><a href="#">Configuración</a></li>
       <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
@@ -37,16 +36,16 @@
 
     <!-- Perfil -->
     <section class="profile-card">
-      <img src="https://via.placeholder.com/120" alt="Foto de perfil" class="profile-img">
+      <img src="https://static.vecteezy.com/system/resources/previews/011/186/876/non_2x/male-profile-picture-symbol-vector.jpg" alt="Foto de perfil" class="profile-img">
       <h2>{{ user.get_full_name }}</h2>
-      <p class="mi-estilo">Apasionado por la tecnología y la innovación.</p>
+      <p class="mi-estilo">Agrega la descripcion de tu perfil.</p>
       <div class="profile-stats">
         <div>
           <h3>{{ amigos_count }}</h3>
           <p>Amigos</p>
         </div>
         <div>
-          <h3>{{ mensajes_count }}</h3>
+          <h3 style="color: rgb(177, 15, 77);">{{ mensajes.count }}</h3>
           <p>Mensajes</p>
         </div>
         <div>
@@ -67,26 +66,63 @@
         {% endfor %}
       </ul>
     </section>
-
     <!-- Recomendaciones -->
     <section class="suggestions">
       <h2>Personas que podrías conocer</h2>
       <div class="suggestion-cards">
-        {% for persona in sugerencias %}
-          <div class="suggestion-card">
-            <img src="https://via.placeholder.com/80" alt="">
-            <h3>{{ persona }}</h3>
-            <button class="btn-primary">Conectar</button>
-          </div>
-        {% empty %}
-          <p>No hay sugerencias por ahora.</p>
-        {% endfor %}
+        <!-- Mensajes -->
+            <section id="mensajes" class="mensajes-section">
+            <h2>Enviar un mensaje</h2><br>
+
+            <!-- Formulario para enviar mensaje -->
+             <form method="post" class="form-mensaje">
+                {% csrf_token %}
+
+                <div style="display: flex; gap: 50px; align-items: center;">
+                    <div>
+                        <label for="id_destinatario">Destinatario</label><br>
+                        {{ form.destinatario }}
+                    </div>
+
+                    <div>
+                        <label for="id_contenido">Mensaje</label><br>
+                        {{ form.contenido }}
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </form>
+
+                
+            <!-- Lista de mensajes enviados -->
+             
+        </div>
+    </section>
+
       </div>
+    </section>
+    <br>
+      <!-- Mensajes recibidos -->
+       <section class="suggestions">
+      <h2>Mis mensajes recibidos</h2>
+      <div class="suggestion-cards">
+        <div class="mensajes-recibidos">
+            
+            {% for msg in mensajes %}
+            <div class="mensaje-card">
+                <p><strong>De:</strong> {{ msg.remitente.username }}</p>
+                <p>{{ msg.contenido }}</p>
+                <span class="fecha">{{ msg.fecha_envio|date:"d/m/Y H:i" }}</span>
+            </div>
+            {% empty %}
+            <p>No tienes mensajes.</p>
+            {% endfor %}
+        </div>
     </section>
 
   </main>
 
 </body>
 </html>
-
-
