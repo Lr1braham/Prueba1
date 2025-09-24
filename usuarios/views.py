@@ -7,8 +7,6 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
-
 
 
 def home(request):
@@ -23,6 +21,13 @@ def login_view(request):
 from django.shortcuts import render
 
 # Vista para el dashboard (página protegida)
+
+def dashboard_view(request):
+    user_id = request.session.get("user_id")
+    if not user_id:
+        return redirect("login")
+    user = Contact.objects.get(id=user_id)
+    return render(request, "usuarios/dashboard.html", {"user": user})
 
 def logout_view(request):
     request.session.flush()
@@ -70,6 +75,4 @@ def register_view(request):
     return render(request, "usuarios/contact.html", {"form": form})
 
 
-@login_required(login_url="login")  # te manda a login si no está autenticado
-def dashboard_view(request):
-    return render(request, "usuarios/dashboard.html", {"user": request.user})
+
