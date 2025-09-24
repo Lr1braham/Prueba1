@@ -68,7 +68,7 @@ def register_view(request):
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
                 messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
-                return redirect("dashboard")  # 👈 redirige al login
+                return redirect("success")  # 👈 redirige al login
     else:
         form = ContactForm()
 
